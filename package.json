@@ -12,5 +12,9 @@
     "@sveltejs/kit": "next",
     "svelte": "^3.44.0"
   },
-  "type": "module"
+  "type": "module",
+  "dependencies": {
+    "@emailjs/browser": "^3.4.0",
+    "wretch": "^1.7.7"
+  }
 }
