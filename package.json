@@ -15,7 +15,6 @@
   },
   "type": "module",
   "dependencies": {
-    "@emailjs/browser": "^3.4.0",
     "wretch": "^1.7.7"
   }
 }

@@ -1,7 +1,5 @@
 <script>
     import {userIp} from './../store'
-    import emailjs from '@emailjs/browser'
-    emailjs.init(import.meta.env.VITE_USER_ID);
     let name , subject , message, email
     const submitEmail = function(event) {
         event.preventDefault();
@@ -15,11 +13,7 @@
                 message,
                 from_ip: $userIp
             }
-            emailjs.send(import.meta.env.VITE_EMAILJS_SERVICE_ID, import.meta.env.VITE_EMAILJS_TEMPLATE_ID, templateParams).then(function(response) {
-                console.log('SUCCESS!', response.status, response.text);
-            }, function(error) {
-                console.log('FAILED...', error);
-            });
+            console.log(templateParams)
         }
     }
 </script>
