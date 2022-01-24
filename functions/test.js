@@ -1,3 +1,6 @@
 export async function onRequestGet(context) {
-    return new Response(JSON.stringify({ message: 'hurrah it works'}));
-  }
+    const info = JSON.stringify({
+        message: 'hurrah it works'
+    });
+    return new Response(info, null, 2);
+}
