@@ -4,5 +4,5 @@ export async function onRequestGet(context) {
       env
     } = context;
   
-    return new Response({env, message: 'response from function'});
+    return new Response(JSON.stringify({env, message: 'response from function'}));
   }

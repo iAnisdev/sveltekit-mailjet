@@ -1,3 +1,3 @@
 export async function onRequestGet(context) {
-    return new Response({ message: 'hurrah it works'});
+    return new Response(JSON.stringify({ message: 'hurrah it works'}));
   }
