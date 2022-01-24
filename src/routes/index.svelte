@@ -21,8 +21,3 @@
 <svelte:head>
     <title>Svelte Kit and Mailjet Demo</title>
 </svelte:head>
-
-
-<style>
-    
-</style>
