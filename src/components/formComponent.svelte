@@ -1,21 +1,26 @@
 <script>
-    import {userIp} from './../store'
-    let name , subject , message, email
-    const submitEmail = function(event) {
+    import { userIp } from "./../store";
+    import wretch from "wretch";
+
+    let name, subject, message, email;
+    const submitEmail = async function (event) {
         event.preventDefault();
-        if(name === 'James'){
-            alert("Cannot Submit with name James")
-        }else{
+        if (name === "James") {
+            alert("Cannot Submit with name James");
+        } else {
             let templateParams = {
                 subject,
                 to_email: email,
                 to_name: name,
                 message,
-                from_ip: $userIp
-            }
+                from_ip: $userIp,
+            };
+            let response = await wretch().url("/send").post(templateParams);
+            console.log("API response ", response);
         }
-    }
+    };
 </script>
+
 <form on:submit={submitEmail}>
     <div class="mb-3">
         <label for="name" class="form-label">Name</label>
@@ -27,18 +32,18 @@
             required
             bind:value={name}
         />
-</div>
+    </div>
 
-<div class="mb-3">
-    <label for="name" class="form-label">Email</label>
-    <input
-        type="email"
-        class="form-control"
-        id="email"
-        placeholder="Enter your email"
-        required
-        bind:value={email}
-    />
+    <div class="mb-3">
+        <label for="name" class="form-label">Email</label>
+        <input
+            type="email"
+            class="form-control"
+            id="email"
+            placeholder="Enter your email"
+            required
+            bind:value={email}
+        />
     </div>
     <div class="mb-3">
         <label for="message" class="form-label">Subject</label>
@@ -51,7 +56,12 @@
     </div>
     <div class="mb-3">
         <label for="message" class="form-label">Your Message</label>
-        <textarea class="form-control" id="message" rows="5" bind:value={message}/>
+        <textarea
+            class="form-control"
+            id="message"
+            rows="5"
+            bind:value={message}
+        />
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>
