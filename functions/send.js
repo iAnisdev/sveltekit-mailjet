@@ -1,8 +1,7 @@
 export async function onRequestGet(context) {
-    // Contents of context object
-    const {
-      env
-    } = context;
-  
-    return new Response(JSON.stringify({env, message: 'response from function'}));
-  }
+    const info = JSON.stringify({
+        env,
+        message: 'response from function'
+      })
+      return new Response(info, null, 2);
+    }
