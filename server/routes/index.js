@@ -1,13 +1,15 @@
+var express = require('express');
+const mailjet = require('node-mailjet').connect(process.env.API_KEY, process.env.API_SECRET)
 
-export async function onRequestPost(context) {
-  const { env , data } = context;
-  const mailjet = require('node-mailjet').connect(env.API_KEY, env.API_SECRET)
+var router = express.Router();
 
+router.post('/send', function(req, res, next) {
+  const data = req.body;
   mailjet.post("send", { 'version': 'v3.1'}).request({
     "Messages": [{
       "From": {
-        "Email": env.SENDER_EMAIL,
-        "Name": env.SENDER_NAME
+        "Email": process.env.SENDER_EMAIL,
+        "Name": process.env.SENDER_NAME
       },
       "To": [{
         "Email": data.to_email,
@@ -18,8 +20,10 @@ export async function onRequestPost(context) {
       "HTMLPart": `<h3>Dear ${data.to_name}, welcome to my App, Your IP is ${data.from_ip}`
     }]
   }).then((result) => {
-    return new Response(JSON.stringify(result.body), null, 2);
+   res.json(result.body)
   }).catch((err) => {
-    return new Response(err, null, 2);
+    res.status(400).json(err)
   })
-}
+});
+
+module.exports = router;

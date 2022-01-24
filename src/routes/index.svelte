@@ -9,6 +9,7 @@
     
     async function fetchIP() {
         let response = await IP_API.get().json()
+        console.log(response)
         userIp.set(response.ipAddress)
     }
     onMount(fetchIP);

@@ -1,22 +1,31 @@
 <script>
     import { userIp } from "./../store";
     import wretch from "wretch";
-
     let name, subject, message, email;
     const submitEmail = async function (event) {
         event.preventDefault();
         if (name === "James") {
             alert("Cannot Submit with name James");
         } else {
-            let templateParams = {
+            let data = {
                 subject,
                 to_email: email,
                 to_name: name,
                 message,
-                from_ip: $userIp,
+                from_ip: $userIp
             };
-            let response = await wretch().url("/send").post(templateParams);
-            console.log("API response ", response);
+            console.log("$userIp " , $userIp)
+            let response = await wretch().url("http://localhost:3030/send").post(data).json();
+            if(response.Messages[0].Status === 'success'){
+                alert('Mail Sent!')
+                name = ''
+                subject = ''
+                message = ''
+                email = ''
+            }else{
+                console.log(response)
+                alert("Error, please check console")
+            }
         }
     };
 </script>
