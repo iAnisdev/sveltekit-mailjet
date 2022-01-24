@@ -9,11 +9,10 @@
             let templateParams = {
                 subject,
                 to_email: email,
-                from_name: name,
+                to_name: name,
                 message,
                 from_ip: $userIp
             }
-            console.log(templateParams)
         }
     }
 </script>

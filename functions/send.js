@@ -1,19 +1,21 @@
-const mailjet = require('node-mailjet').connect('45a3af7f2d4e8e848bebe8f97b960331', '1da0d3c35c170485c24b8f9ac3bcf275')
+
 export async function onRequestPost(context) {
-  const { data } = context;
+  const { env , data } = context;
+  const mailjet = require('node-mailjet').connect(env.API_KEY, env.API_SECRET)
+
   mailjet.post("send", { 'version': 'v3.1'}).request({
     "Messages": [{
       "From": {
-        "Email": "pilot@mailjet.com",
-        "Name": "Mailjet Pilot"
+        "Email": env.SENDER_EMAIL,
+        "Name": env.SENDER_NAME
       },
       "To": [{
-        "Email": data.email,
-        "Name": data.name
+        "Email": data.to_email,
+        "Name": data.to_name
       }],
       "Subject": data.subject,
-      "TextPart": "Following is a Test Email!",
-      "HTMLPart": `<h3>Dear ${data.name}, welcome to my App, Your IP is ${data.ip}`
+      "TextPart": `Email Message is : ${data.message}`,
+      "HTMLPart": `<h3>Dear ${data.to_name}, welcome to my App, Your IP is ${data.from_ip}`
     }]
   }).then((result) => {
     return new Response(JSON.stringify(result.body), null, 2);
