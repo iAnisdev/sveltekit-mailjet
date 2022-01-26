@@ -4,4 +4,5 @@ export async function onRequestGet({env}) {
         platform: env
     });
     return new Response(info, null, 2);
+    
 }
