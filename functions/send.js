@@ -18,6 +18,7 @@ export async function onRequestPost(context) {
       "HTMLPart": `<h3>Dear ${data.to_name}, welcome to my App, Your IP is ${data.from_ip}`
     }]
   }).then((result) => {
+    console.log("result "  , result)
     return new Response(JSON.stringify(result.body), null, 2);
   }).catch((err) => {
     return new Response(err, null, 2);
