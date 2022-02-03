@@ -2,7 +2,7 @@
     import { userIp } from "./../store";
     import wretch from "wretch";
 
-    let name, subject, message, email;
+    let name , subject , message, email;
     const submitEmail = async function (event) {
         event.preventDefault();
         if (name === "James") {
@@ -15,7 +15,7 @@
                 message,
                 from_ip: $userIp,
             };
-            let response = await wretch().url("/send").post(templateParams);
+            let response = await wretch().url("/send").post(templateParams).json();
             console.log("API response ", response);
         }
     };
