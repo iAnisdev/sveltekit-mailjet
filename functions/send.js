@@ -2,7 +2,6 @@
 export async function onRequestPost(context) {
   const { env , data } = context;
   const mailjet = require('node-mailjet').connect(env.API_KEY, env.API_SECRET)
-
   mailjet.post("send", { 'version': 'v3.1'}).request({
     "Messages": [{
       "From": {
