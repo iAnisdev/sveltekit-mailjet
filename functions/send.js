@@ -21,6 +21,7 @@ export async function onRequestPost(context) {
     console.log("result ", result)
     return new Response(JSON.stringify(result.body), null, 2);
   }).catch((err) => {
+    console.log("err ", err)
     return new Response(err, null, 2);
   })
 }
