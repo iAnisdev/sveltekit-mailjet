@@ -5,5 +5,4 @@ export async function onRequestGet({env}) {
         authorization: 'Basic ' + btoa(`${env.API_KEY}:${env.API_SECRET}`)
     });
     return new Response(info, null, 2);
-    
 }
