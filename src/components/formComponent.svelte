@@ -17,6 +17,10 @@
             };
             let response = await wretch().url("/send").post(templateParams).json();
             console.log("API response ", response);
+            if(response.ok){
+                alert('Mail Sent!')
+                name  = '', subject  = '' , message  = '', email  = '';
+            }
         }
     };
 </script>
