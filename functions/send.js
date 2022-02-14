@@ -19,7 +19,7 @@ export async function onRequestPost(context) {
          "Html-part": `<h3>Dear ${data.to_name}, welcome to my App, Your IP is ${data.from_ip}`
        })
      })
-     return new Response(JSON.stringify(result), null, 2);
+     return new Response(JSON.stringify(result.body), null, 2);
   }catch(err){
     return new Response(err, null, 2);
   }
