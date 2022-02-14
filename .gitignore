@@ -2,6 +2,7 @@
 node_modules
 /.svelte-kit
 /build
+/src/routes/testsend.js
 /package
 .env
 .env.*
